@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Chapter7.View.Page1View"
+             x:Class="Chapter7.View.Page1View.SocialMenuScreen"
+             Title="SocialMenuScreen">
+
+    <ScrollView>
+        <Grid           
+            RowDefinitions="Auto,*">
+            <StackLayout
+                Spacing="10"
+                Padding="10,20"
+                BackgroundColor="DarkCyan"
+                Grid.Row="0">
+                <Border   
+                    StrokeThickness="2"
+                    Stroke="White"
+                    StrokeShape="RoundRectangle 100"
+                    HeightRequest="100"
+                    WidthRequest="100">
+                    <Image
+                        Aspect="AspectFit"
+                        Source="user5"/>
+                </Border>
+                <Label
+                    Text="Elon Musk"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="22"
+                    HorizontalOptions="Center"/>
+                <Label
+                    Text="20.3M Followers"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="14"
+                    HorizontalOptions="Center"/>
+            </StackLayout>
+            <CollectionView
+                Grid.Row="1"
+                Margin="10,50"
+                x:Name="SocialCollectionView"
+                x:FieldModifier="public"
+                SelectionMode="Single"> 
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type local:SocialMediaItems}">
+                        <local:SocialMediaItems
+                            Title="Profile"
+                            IconSource="profile"
+                            TargetType="{x:Type local:ProfileScreen}"/>
+                        <local:SocialMediaItems
+                            Title="Message"
+                            IconSource="msgicon"
+                            TargetType="{x:Type local:MessageScreen}"/>
+                        <local:SocialMediaItems
+                            Title="Activity"
+                            IconSource="activity"
+                            TargetType="{x:Type local:ActivityScreen}"/>
+                        <local:SocialMediaItems
+                            Title="List"
+                            IconSource="listicon"
+                            TargetType="{x:Type local:ListScreen}"/>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="10"></LinearItemsLayout>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border  
+                            x:Name="BackColor"
+                            StrokeShape="RoundRectangle 10"
+                            Padding="10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonState">
+                                    <VisualState Name="Normal"/>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter
+                                                TargetName="BackColor"
+                                                Property="Border.BackgroundColor"
+                                                Value="SkyBlue"></Setter>
+                                            <Setter
+                                                TargetName="TitleColor"
+                                                Property="Label.TextColor"
+                                                Value="White"></Setter>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid
+                                ColumnSpacing="10"
+                                ColumnDefinitions="Auto,*">
+                                <Image
+                                    Margin="10,0"
+                                    Grid.Column="0"
+                                    HeightRequest="30"
+                                    WidthRequest="30"
+                                    Source="{Binding IconSource}"/>
+                                <Label
+                                    x:Name="TitleColor"
+                                    Grid.Column="1"
+                                    Text="{Binding Title}"
+                                    FontSize="16"
+                                    FontAttributes="Bold"
+                                    VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+
+    
+</ContentPage>

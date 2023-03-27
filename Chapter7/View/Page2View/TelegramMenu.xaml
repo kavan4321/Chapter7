@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Chapter7.View.Page2View"
+             x:Class="Chapter7.View.Page2View.TelegramMenu"
+             Title="Telegram">
+
+    <ScrollView>
+        <Grid
+            RowDefinitions="Auto,*">
+            <Grid
+                Padding="10,15,20,15"
+                RowSpacing="20"
+                RowDefinitions="*,*"
+                ColumnDefinitions="*,Auto"
+                BackgroundColor="LightSkyBlue" 
+                Grid.Row="0">
+                <Border
+                    HorizontalOptions="Start"
+                    BackgroundColor="CornflowerBlue"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    StrokeShape="RoundRectangle 80"
+                    HeightRequest="80"
+                    WidthRequest="80">
+                    <Label                      
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        TextColor="White"
+                        FontSize="26"
+                        Text="KP"
+                        FontAttributes="Bold"/>
+                </Border>
+                <ImageButton
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    HeightRequest="25"
+                    WidthRequest="25"
+                    Source="moon"/>
+                <VerticalStackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    >
+                    <Label
+                        FontSize="16"
+                        Text="Kavan Patel"
+                        FontAttributes="Bold"
+                        TextColor="White"/>
+                    <Label
+                        TextColor="White"
+                        Text="+91 8347054395"/>
+                </VerticalStackLayout>
+                <ImageButton
+                    HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    HeightRequest="20"
+                    WidthRequest="20"
+                    Rotation="-90"
+                    Source="arrow"/>
+            </Grid>
+               
+            <CollectionView
+                Grid.Row="1"
+                Margin="10,20"
+                x:Name="TelegramCollection"
+                SelectionMode="Single"
+                x:FieldModifier="public">
+          
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type local:TelegramItems}">
+                        <local:TelegramItems
+                            Title="New Group"
+                            IconSource="group"
+                            TargetType="{x:Type local:NewGroupScree}"/>
+                        <local:TelegramItems
+                            Title="Contacts"
+                            IconSource="profile"
+                            TargetType="{x:Type local:ContectScreen}"/>
+                        <local:TelegramItems
+                            Title="Calls"
+                            IconSource="call"
+                            TargetType="{x:Type local:CallScreen}"/>
+                        <local:TelegramItems
+                            Title="People Nearby"
+                            IconSource="nearby"
+                            TargetType="{x:Type local:NearbyScreen}"/>
+                        <local:TelegramItems
+                            Title="Saved Messages"
+                            IconSource="saved"
+                            TargetType="{x:Type local:SavedScreen}"/>
+                        <local:TelegramItems
+                            Title="Settings"
+                            IconSource="settings"
+                            TargetType="{x:Type local:SettingScreen}"/>
+                        <local:TelegramItems
+                            Title="Invite Friends"
+                            IconSource="invite"
+                            TargetType="{x:Type local:InviteScreen}"/>
+                        <local:TelegramItems
+                            Title="Telegram Features"
+                            IconSource="faxs"
+                            TargetType="{x:Type local:FaxScreen}"/>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+               
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                        Orientation="Vertical"
+                        ItemSpacing="20"/>
+                </CollectionView.ItemsLayout>
+              
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border 
+                            StrokeThickness="0">
+                            <Grid
+                                ColumnSpacing="10"
+                                ColumnDefinitions="Auto,*">
+                                <Image
+                                    Margin="10,0"
+                                    Grid.Column="0"
+                                    HeightRequest="25"
+                                    WidthRequest="25"
+                                    Source="{Binding IconSource}"/>
+                                <Label
+                                    Grid.Column="1"
+                                    FontSize="15"
+                                    VerticalOptions="Center"
+                                    Text="{Binding Title}"
+                                    FontAttributes="Bold"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>
