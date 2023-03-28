@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter7.View.Page3View.LoginScreen"
+             xmlns:ViewModel="clr-namespace:Chapter7.ViewModel.Page3ViewModel.ViewModelLogin"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="Black"
+             Title="LoginScreen">
+
+    <ContentPage.BindingContext>
+        <ViewModel:LoginViewModel></ViewModel:LoginViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout
+            Spacing="10"
+            Padding="15">
+            <ImageButton
+                HorizontalOptions="Start"
+                Source="arrow"
+                BackgroundColor="Gray"
+                HeightRequest="30"
+                WidthRequest="30"/>
+            <Label
+                Margin="0,10"
+                TextColor="White"
+                FontSize="28"
+                FontAttributes="Bold"
+                Text="Login"/>
+            <Label
+                TextColor="White"
+                FontSize="16"
+                Text="Username"/>
+            <Border
+                Padding="5"
+                Stroke="Gray"
+                BackgroundColor="Black"
+                StrokeShape="RoundRectangle 5">
+                <Entry
+                    TextColor="White"
+                    Text="{Binding UserName}"
+                    Placeholder="Enter your Username"/>
+            </Border>
+            <Label
+                Margin="0,10,0,0"
+                TextColor="White"
+                FontSize="16"
+                Text="Password"/>
+            <Border
+                Padding="5"
+                Stroke="Gray"
+                BackgroundColor="Black"
+                StrokeShape="RoundRectangle 5">
+                <Entry
+                    IsPassword="True"
+                    TextColor="White"
+                    Text="{Binding Password}"
+                    Placeholder="Enter your Password"/>
+            </Border>
+            <Button
+                Margin="0,50,0,30"  
+                BackgroundColor="CornflowerBlue"
+                Command="{Binding LoginCommand}"
+                Text="Login"/>
+            <Grid
+                ColumnSpacing="2"
+                ColumnDefinitions="*,Auto,*">
+                <Line
+                    Grid.Column="0"
+                    BackgroundColor="Gray"
+                    HeightRequest="1"/>
+                <Label
+                    TextColor="Gray"
+                    Grid.Column="1"
+                    Text="Or"/>
+                <Line
+                    Grid.Column="2"
+                    BackgroundColor="Gray"
+                    HeightRequest="1"/>
+            </Grid>
+            <Border
+                Margin="0,10,0,0"
+                Padding="7"
+                Stroke="CornflowerBlue"
+                StrokeShape="RoundRectangle 5"
+                BackgroundColor="Black">
+                <HorizontalStackLayout
+                    Spacing="5"
+                    HorizontalOptions="Center">
+                    <Image                       
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        Source="google"/>
+                    <Label
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        Text="Login with Google"/>
+                </HorizontalStackLayout>
+            </Border>
+            <Border
+                Margin="0,10"
+                Padding="7"
+                Stroke="CornflowerBlue"
+                StrokeShape="RoundRectangle 5"
+                BackgroundColor="Black">
+                <HorizontalStackLayout
+                    Spacing="5"
+                    HorizontalOptions="Center">
+                    <Image  
+                        Aspect="AspectFit"
+                        HeightRequest="30"
+                        WidthRequest="30"
+                        Source="google"/>
+                    <Label
+                        VerticalOptions="Center"
+                        TextColor="White"
+                        Text="Login with Apple"/>
+                </HorizontalStackLayout>
+            </Border>
+            <HorizontalStackLayout
+                Margin="10"
+                Spacing="4"
+                HorizontalOptions="Center"
+                VerticalOptions="EndAndExpand">
+                <Label
+                    TextColor="Gray"
+                    Text="Don't have an account?"/>
+                <Label
+                    Text="Register"
+                    TextColor="LightGray">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Tapped="TapGestureRecognizerTapped"
+                            NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

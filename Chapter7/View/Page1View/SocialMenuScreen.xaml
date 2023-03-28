@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Chapter7.View.Page1View"
              x:Class="Chapter7.View.Page1View.SocialMenuScreen"
-             Title="SocialMenuScreen">
+             Title="Social Menu"
+             IconImageSource="dotnet_bot">
 
     <ScrollView>
         <Grid           

@@ -9,7 +9,7 @@
         <Grid
             RowDefinitions="Auto,*">
             <Grid
-                Padding="10,15,20,15"
+                Padding="10,15,20,10"
                 RowSpacing="20"
                 RowDefinitions="*,*"
                 ColumnDefinitions="*,Auto"
@@ -31,11 +31,12 @@
                         Text="KP"
                         FontAttributes="Bold"/>
                 </Border>
-                <ImageButton
+                <ImageButton                 
                     HorizontalOptions="End"
                     VerticalOptions="Center"
                     Grid.Row="0"
                     Grid.Column="1"
+                    Rotation="270"
                     HeightRequest="25"
                     WidthRequest="25"
                     Source="moon"/>
@@ -59,10 +60,10 @@
                     Grid.Column="1"
                     HeightRequest="20"
                     WidthRequest="20"
-                    Rotation="-90"
+                    Rotation="270"
                     Source="arrow"/>
             </Grid>
-               
+           
             <CollectionView
                 Grid.Row="1"
                 Margin="10,20"

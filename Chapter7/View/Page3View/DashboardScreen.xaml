@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter7.View.Page3View.DashboardScreen"
+             BackgroundColor="#191919"               
+             Title="DashboardScreen">
+
+    <NavigationPage.TitleView>
+        <Grid
+            Padding="0,5,10,5"
+            ColumnDefinitions="*,*">
+            <Label
+                Grid.Column="0"
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                FontSize="17"
+                FontAttributes="Bold"
+                TextColor="White"
+                Text="Home"/>
+            <Label
+                Grid.Column="1"
+                FontAttributes="Bold"
+                VerticalOptions="Center"
+                FontSize="17"
+                Text="Logout"
+                HorizontalOptions="End"
+                TextColor="White">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Tapped="TapGestureRecognizerTapped"
+                        NumberOfTapsRequired="1"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+        
+    </NavigationPage.TitleView>
+
+    <ScrollView>
+      
+        <StackLayout
+            Spacing="20"
+            Padding="10">
+                      
+            <Grid
+                Margin="10,10"
+                ColumnSpacing="20"
+                ColumnDefinitions="Auto,*">
+                <Border       
+                    Grid.Column="0"
+                    Stroke="White"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 70">
+                    <Image
+                        Aspect="AspectFill"
+                        HeightRequest="70"
+                        WidthRequest="70"
+                        Source="user5"/>
+                </Border>
+                <VerticalStackLayout
+                    VerticalOptions="Center"
+                    Spacing="4"
+                    Grid.Column="1">
+                    <Label
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        FontSize="27"
+                        Text="Elon Musk"/>
+                    <Label
+                        TextColor="Gray"
+                        Text="Welcome to the Tesla system"/>
+                </VerticalStackLayout>
+            </Grid>
+      
+            <Grid
+                Margin="10"
+                RowDefinitions="*,*"
+                ColumnDefinitions="*,*"
+                ColumnSpacing="20"
+                RowSpacing="25">
+          
+                <Border
+                    StrokeThickness="0"
+                    BackgroundColor="#2F2F2F"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    Grid.Column="0"
+                    Grid.Row="0">
+                    <StackLayout
+                        Margin="0,25"
+                        Spacing="20">
+                        <Border                           
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            StrokeThickness="0"
+                            BackgroundColor="#5E5E5E"
+                            StrokeShape="RoundRectangle 50">
+                            <Image
+                                Aspect="AspectFit"
+                                Source="invite"/>
+                        </Border>
+                        <Label
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="Customer"/>
+                    </StackLayout>
+                </Border>
+
+                <Border
+                    StrokeThickness="0"
+                    BackgroundColor="#2F2F2F"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    Grid.Column="1"
+                    Grid.Row="0">
+                    <StackLayout
+                        Margin="0,25"
+                        Spacing="20">
+                        <Border
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            StrokeThickness="0"
+                            BackgroundColor="#5E5E5E"
+                            StrokeShape="RoundRectangle 50">
+                            <Image
+                                Aspect="AspectFill"
+                                Source="activity"/>
+                        </Border>
+                        <Label
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="Product"/>
+                    </StackLayout>
+                </Border>
+
+                <Border
+                    StrokeThickness="0"
+                    BackgroundColor="#2F2F2F"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    Grid.Column="0"
+                    Grid.Row="1">
+                    <StackLayout
+                        Margin="0,25"
+                        Spacing="20">
+                        <Border
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            StrokeThickness="0"
+                            BackgroundColor="#5E5E5E"
+                            StrokeShape="RoundRectangle 50">
+                            <Image
+                                Aspect="AspectFit"
+                                Source="listicon"/>
+                        </Border>
+                        <Label
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="Individual"/>
+                    </StackLayout>
+                </Border>
+
+                <Border
+                    StrokeThickness="0"
+                    BackgroundColor="#2F2F2F"
+                    StrokeShape="RoundRectangle 20"
+                    Padding="20"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <StackLayout
+                        Margin="0,25"
+                        Spacing="20">
+                        <Border
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            StrokeThickness="0"
+                            BackgroundColor="#5E5E5E"
+                            StrokeShape="RoundRectangle 50">
+                            <Image
+                                Aspect="AspectFit"
+                                Source="group"/>
+                        </Border>
+                        <Label
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="Group"/>
+                    </StackLayout>
+                </Border>
+            </Grid>
+
+            <Border
+                StrokeThickness="0"
+                BackgroundColor="#2F2F2F"
+                StrokeShape="RoundRectangle 20"
+                Padding="20,15"
+                Margin="10">
+                <StackLayout
+                    Orientation="Horizontal"
+                    Spacing="10">
+                    <Image
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        Source="search"/>
+                    <Label
+                        VerticalOptions="Center"
+                        TextColor="Gray"
+                        Text="Order has been audited."/>
+                    <Image
+                        HorizontalOptions="EndAndExpand"
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        Rotation="180"
+                        Source="arrow"/>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
