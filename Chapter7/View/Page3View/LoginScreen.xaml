@@ -38,6 +38,7 @@
                 <Entry
                     TextColor="White"
                     Text="{Binding UserName}"
+                    TextChanged="EntryTextChanged"
                     Placeholder="Enter your Username"/>
             </Border>
             <Label
@@ -54,11 +55,13 @@
                     IsPassword="True"
                     TextColor="White"
                     Text="{Binding Password}"
+                    TextChanged="EntryTextChanged"
                     Placeholder="Enter your Password"/>
             </Border>
             <Button
                 Margin="0,50,0,30"  
                 BackgroundColor="CornflowerBlue"
+                IsEnabled="{Binding IsEnable}"
                 Command="{Binding LoginCommand}"
                 Text="Login"/>
             <Grid

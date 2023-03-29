@@ -7,13 +7,12 @@ namespace Chapter7.Database.Page3Database
     {
         private SQLiteAsyncConnection _connection;
       
-        public int Id { get;set; }
         public string UserName { get; set; }
         public string Password { get; set; }
 
         public void CreateDatabase()
         {
-            if (_connection == null)
+            if (_connection != null)
                 return;            
             var databaseName = "RegisterDetails";
             var folderPath= Environment.GetFolderPath(Environment.SpecialFolder.Personal);
@@ -31,7 +30,7 @@ namespace Chapter7.Database.Page3Database
         {
             var table = new RegisterTable()
             {
-                Id = Id,
+
                 UserName=UserName,
                 Password= Password
             };
@@ -41,7 +40,8 @@ namespace Chapter7.Database.Page3Database
 
         public async Task<List<RegisterDetails>> QueryAsync()
         {
-            return await _connection.QueryAsync<RegisterDetails>("select * from RegisterDetails where Id>0");
+            return await _connection.QueryAsync<RegisterDetails>
+                ("select * from RegisterDetails where UserName=");
         }
     }
 }

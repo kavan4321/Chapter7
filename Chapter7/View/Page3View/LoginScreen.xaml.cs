@@ -10,7 +10,8 @@ public partial class LoginScreen : ContentPage
 		InitializeComponent();
 		_viewModel = (LoginViewModel)BindingContext;
         _viewModel.LoginEvent += ViewModelLoginEvent;
-	}
+        _viewModel.ButtonEnable();
+    }
 
     private async void ViewModelLoginEvent(object sender, EventArgs e)
     {
@@ -20,5 +21,10 @@ public partial class LoginScreen : ContentPage
     private async void TapGestureRecognizerTapped(object sender, TappedEventArgs e)
     {
 		await Navigation.PopAsync();
+    }
+
+    private void EntryTextChanged(object sender, TextChangedEventArgs e)
+    {
+        _viewModel.ButtonEnable();
     }
 }

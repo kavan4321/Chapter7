@@ -13,6 +13,7 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelRegister
         private string _userName;
         private string _password;
         private string _confirmPassword;
+        private bool _isEnable;
 
         public string UserName
         {
@@ -31,7 +32,7 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelRegister
                 _password = value; 
                 OnPropertyChanged();
             }
-        }
+        } 
         public string ConfirmPassword
         {
             get => _confirmPassword;
@@ -41,15 +42,40 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelRegister
                 OnPropertyChanged();
             }
         }
-
+        public bool IsEnable
+        {
+            get => _isEnable;
+            set
+            {
+                _isEnable=value;
+                OnPropertyChanged();
+            }
+        }
+      
+      
         public ICommand RegisterCommand { get;private set; }
+       
         public event EventHandler RegisterEvent;
+     
         public RegisterViewModel()
         {
             _registerDetails = new RegisterDetails();
-            RegisterCommand = new Command(Validation);
+            RegisterCommand = new Command(Validation);         
         }
 
+        public void EnableButton()
+        {
+            if( !string.IsNullOrWhiteSpace(UserName) &&
+                !string.IsNullOrWhiteSpace(Password) &&
+                !string.IsNullOrWhiteSpace(ConfirmPassword)) 
+            {
+                IsEnable = true;
+            }
+            else
+            {
+                IsEnable = false;
+            }
+        }
         public void Validation()
         {
             if(string.IsNullOrWhiteSpace(UserName) && 
@@ -81,17 +107,21 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelRegister
             }
             else
             {
-                _registerDetails.UserName= UserName;
-                _registerDetails.Password= Password;
-               // _registerDetails.CreateDatabase();
-              //  _ = _registerDetails.CreateTableAsync();
-                _ =_registerDetails.InsertAsync();
-                _ = _registerDetails.QueryAsync();
-                _registerDetails.Id++;
+                DatabaseConnection();
                 RegisterEvent?.Invoke(this, new EventArgs());
             }
         }
 
+
+        public void DatabaseConnection()
+        {
+            _registerDetails.UserName = UserName;
+            _registerDetails.Password = Password;
+            _registerDetails.CreateDatabase();
+            _ = _registerDetails.CreateTableAsync();
+            _ = _registerDetails.InsertAsync();
+            _ = _registerDetails.QueryAsync();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

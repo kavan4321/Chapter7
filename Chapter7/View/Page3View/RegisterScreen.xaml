@@ -37,6 +37,7 @@
                 <Entry
                     TextColor="White"
                     Text="{Binding UserName}"
+                    TextChanged="EntryTextChanged"
                     Placeholder="Enter your Username"/>
             </Border>
             <Label
@@ -52,6 +53,7 @@
                 <Entry
                     TextColor="White"
                     Text="{Binding Password}"
+                    TextChanged="EntryTextChanged"
                     IsPassword="True"
                     Placeholder="Enter your Password"/>
             </Border>
@@ -68,12 +70,14 @@
                 <Entry
                     TextColor="White"
                     IsPassword="True"
+                    TextChanged="EntryTextChanged"
                     Text="{Binding ConfirmPassword}"
                     Placeholder="Enter Confirm Password"/>
             </Border>
             <Button
                 Margin="0,20"  
                 BackgroundColor="CornflowerBlue"
+                IsEnabled="{Binding IsEnable}"
                 Command="{Binding RegisterCommand}"
                 Text="Register"/>
             <Grid

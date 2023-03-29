@@ -16,7 +16,7 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
         private RegisterDetails _registerDetails;
         private string _userName;
         private string _password;
-
+        private bool _isEnable;
         public string UserName
         {
             get => _userName;
@@ -36,6 +36,16 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
             }
         }
 
+        public bool IsEnable
+        {
+            get => _isEnable;
+            set
+            {
+                _isEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand LoginCommand { get; private set; }
         
         public event EventHandler LoginEvent;
@@ -45,6 +55,20 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
             LoginCommand = new Command(Validation);
         }
 
+
+        public void ButtonEnable()
+        {
+            if( !string.IsNullOrWhiteSpace(UserName) &&
+                !string.IsNullOrWhiteSpace(Password))
+            {
+                IsEnable = true;
+            }
+            else
+            {
+                IsEnable= false;
+            }
+        }
+       
         public void Validation()
         {
             if (string.IsNullOrWhiteSpace(UserName) &&
