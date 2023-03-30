@@ -1,4 +1,5 @@
 using Chapter7.ViewModel.Page3ViewModel.ViewModelRegister;
+using CommunityToolkit.Maui.Alerts;
 
 namespace Chapter7.View.Page3View;
 
@@ -13,9 +14,17 @@ public partial class RegisterScreen : ContentPage
         _viewModel.EnableButton();
 	}
 
-    private async void ViewModelRegisterEvent(object sender, EventArgs e)
+    private async void ViewModelRegisterEvent(object sender, bool e)
     {
-        await Navigation.PushAsync(new DashboardScreen());
+        if (e)
+        {
+            await Navigation.PushAsync(new LoginScreen());
+            await Toast.Make("Registered Successfully", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+        }
+        else
+        {
+            await Toast.Make("Somthing went wrong", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+        }
     }
 
     private async void TapGestureRecognizerTapped(object sender, TappedEventArgs e)

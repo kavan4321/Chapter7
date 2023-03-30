@@ -90,6 +90,9 @@
 	  <Compile Update="View\Page2View\NewGroupScreen.xaml.cs">
 	    <DependentUpon>NewGroupScreen.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="View\Page4View\ActivitysScreen.xaml.cs">
+	    <DependentUpon>ActivitysScreen.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -148,6 +151,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Page3View\RegisterScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Page4View\ActivitysScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Page4View\AddActivityScreen.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Page4View\EditActivityScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

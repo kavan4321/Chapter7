@@ -1,12 +1,8 @@
 ﻿using Chapter7.Database.Page3Database;
+using Chapter7.Result;
 using CommunityToolkit.Maui.Alerts;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
@@ -17,6 +13,8 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
         private string _userName;
         private string _password;
         private bool _isEnable;
+     
+        
         public string UserName
         {
             get => _userName;
@@ -35,7 +33,6 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
                 OnPropertyChanged();
             }
         }
-
         public bool IsEnable
         {
             get => _isEnable;
@@ -48,10 +45,12 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
 
         public ICommand LoginCommand { get; private set; }
         
-        public event EventHandler LoginEvent;
+        public event EventHandler<RegisterResult> LoginEvent;
         public LoginViewModel()
         {
             _registerDetails = new RegisterDetails();
+            _registerDetails.CreateDatabase();
+            _=_registerDetails.CreateTableAsync();
             LoginCommand = new Command(Validation);
         }
 
@@ -91,13 +90,17 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelLogin
             }          
             else
             {
-                _registerDetails.UserName = UserName;
-                _registerDetails.Password = Password;
-                _ = _registerDetails.InsertAsync();
-                _ = _registerDetails.QueryAsync();
-                _registerDetails.Id++;
-                LoginEvent?.Invoke(this, new EventArgs());
+                Database();
             }
+        }
+
+
+        public async void Database()
+        {
+            _registerDetails.UserName = UserName;
+            _registerDetails.Password = Password;
+            var  result =await  _registerDetails.GetUserDetails();
+            LoginEvent?.Invoke(this,result);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)

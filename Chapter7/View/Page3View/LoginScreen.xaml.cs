@@ -1,4 +1,5 @@
 using Chapter7.ViewModel.Page3ViewModel.ViewModelLogin;
+using CommunityToolkit.Maui.Alerts;
 
 namespace Chapter7.View.Page3View;
 
@@ -13,10 +14,19 @@ public partial class LoginScreen : ContentPage
         _viewModel.ButtonEnable();
     }
 
-    private async void ViewModelLoginEvent(object sender, EventArgs e)
+    private async void ViewModelLoginEvent(object sender, Result.RegisterResult e)
     {
-        await Navigation.PushAsync(new DashboardScreen());
+        if (e.IsSuccess)
+        {
+            await Navigation.PushAsync(new DashboardScreen(e.Id));
+            _ = Toast.Make("Login successfully", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();          
+        }
+        else
+        {
+            _ = Toast.Make("No User Found!!!", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+        }
     }
+
 
     private async void TapGestureRecognizerTapped(object sender, TappedEventArgs e)
     {

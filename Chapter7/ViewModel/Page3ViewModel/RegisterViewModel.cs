@@ -51,15 +51,18 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelRegister
                 OnPropertyChanged();
             }
         }
-      
-      
+
+
+        public event EventHandler<bool> RegisterEvent;
         public ICommand RegisterCommand { get;private set; }
        
-        public event EventHandler RegisterEvent;
      
         public RegisterViewModel()
         {
             _registerDetails = new RegisterDetails();
+            _registerDetails.CreateDatabase();
+            _ = _registerDetails.CreateTableAsync();
+            _ = _registerDetails.GetRegisterListAsync();
             RegisterCommand = new Command(Validation);         
         }
 
@@ -108,20 +111,18 @@ namespace Chapter7.ViewModel.Page3ViewModel.ViewModelRegister
             else
             {
                 DatabaseConnection();
-                RegisterEvent?.Invoke(this, new EventArgs());
             }
         }
 
 
-        public void DatabaseConnection()
+        public async void DatabaseConnection()
         {
             _registerDetails.UserName = UserName;
             _registerDetails.Password = Password;
-            _registerDetails.CreateDatabase();
-            _ = _registerDetails.CreateTableAsync();
-            _ = _registerDetails.InsertAsync();
-            _ = _registerDetails.QueryAsync();
+            var result = await _registerDetails.InsertAsync();
+            RegisterEvent?.Invoke(this, result);
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

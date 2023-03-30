@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chapter7.View.Page3View.DashboardScreen"
+             xmlns:viewmodel="clr-namespace:Chapter7.ViewModel.Page3ViewModel.ViewModelDashBoard"
              BackgroundColor="#191919"               
              Title="DashboardScreen">
 
+    <ContentPage.BindingContext>
+        <viewmodel:DashboardViewModel></viewmodel:DashboardViewModel>
+    </ContentPage.BindingContext>
     <NavigationPage.TitleView>
         <Grid
             Padding="0,5,10,5"
@@ -64,7 +68,7 @@
                         FontAttributes="Bold"
                         TextColor="White"
                         FontSize="27"
-                        Text="Elon Musk"/>
+                        Text="{Binding UserName}"/>
                     <Label
                         TextColor="Gray"
                         Text="Welcome to the Tesla system"/>

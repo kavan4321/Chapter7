@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter7.View.Page4View.AddActivityScreen"
+             xmlns:viewmodel="clr-namespace:Chapter7.ViewModel.Page4ViewModel.ViewModelAddActivity"
+             Title="AddActivityScreen">
+
+    <ContentPage.BindingContext>
+        <viewmodel:AddActivityViewModel></viewmodel:AddActivityViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout
+                VerticalOptions="Center">
+            <Border
+                StrokeShape="RoundRectangle 15"
+                Padding="10"
+                Margin="10,20">
+                <StackLayout
+                    Margin="0,10"
+                    Spacing="10">
+                    <Entry
+                        Text="{Binding Name}"
+                        FontSize="16"
+                        Placeholder="Name"
+                        ></Entry>
+                    <DatePicker
+                        Date="{Binding DueDate}"
+                        ></DatePicker>
+                    <StackLayout
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
+                        <Label                          
+                            VerticalOptions="Center"
+                            Text="Completed"/>
+                        <Switch
+                            IsToggled="{Binding IsComplete}"
+                            ></Switch>
+                    </StackLayout>
+                    <Button
+                        Command="{Binding AddCommand}"
+                            Text="Add"></Button>
+                </StackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
