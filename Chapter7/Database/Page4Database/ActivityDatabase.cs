@@ -14,6 +14,7 @@ namespace Chapter7.Database.Page4Database
         public DateTime DueDate { get; set; }
         public bool IsComplete { get; set; }
         public List<ActivityTable> ActivityList { get; set; }
+      
         public void CreateDatebase()
         {
             var databaseName = "ActivityDetails";
@@ -57,6 +58,7 @@ namespace Chapter7.Database.Page4Database
             return false;
         }
 
+
         public async Task<ActivityResult> GetUserData()
         {
             try
@@ -66,7 +68,7 @@ namespace Chapter7.Database.Page4Database
                 Name = userList.ActivityName;
                 DueDate=userList.DueDate;
                 IsComplete=userList.IsComplete;
-                if (userList != null)
+                if (userList == null)
                 {
                     return new ActivityResult()
                     {
@@ -87,6 +89,50 @@ namespace Chapter7.Database.Page4Database
                 Console.WriteLine(e.Message);
                 return null;
             }
-        }            
+        }  
+        
+
+        public async Task<bool> UpdateAsync()
+        {
+            var table = new ActivityTable()
+            {
+                Id= Id,
+                ActivityName = Name,
+                IsComplete= IsComplete,
+                DueDate = DueDate,
+            };
+
+            try
+            {
+                var updateDetail = await _connection.UpdateAsync(table);
+                var result = updateDetail > 0;
+                return result;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return false;
+        }
+
+
+        public async Task<bool> DeleteAsync()
+        {
+            var table = new ActivityTable()
+            {
+                Id = Id
+            };
+            try
+            {
+                var deleteDetail =await _connection.DeleteAsync(table);
+                var result = deleteDetail > 0;
+                return result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return false;
+        }
     }
 }

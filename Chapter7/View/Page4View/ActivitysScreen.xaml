@@ -15,6 +15,7 @@
             Margin="0,15,10,0"
             FontSize="20"
             FontAttributes="Bold"
+            TextColor="White"
             Text="Your Activites"/>
     </NavigationPage.TitleView>
 
@@ -128,7 +129,7 @@
         <CollectionView
                 x:Name="ActivityCollection"
                 Margin="10"
-                EmptyView="No Data Avalible"
+                EmptyView="No Activity Found"
                 ItemsSource="{Binding ActivityDatails}"
                 ItemTemplate="{StaticResource Selector}">
            

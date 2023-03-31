@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chapter7.View.Page5View.NewTaskScreen"
+             xmlns:ViewModel="clr-namespace:Chapter7.ViewModel.Page5ViewModel.ViewModelNewTask"
+             Title="Create New Task">
+
+    <ContentPage.BindingContext>
+        <ViewModel:NewTaskViewModel></ViewModel:NewTaskViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+    <StackLayout
+        Spacing="10"
+        Padding="10,20">
+        <Label
+            FontSize="16"
+            FontAttributes="Bold"
+            Text="Task Name"/>
+        <Border
+            StrokeShape="RoundRectangle 10">
+            <Entry
+                Text="{Binding TaskName}"/>
+        </Border>
+       
+        <Label
+            Margin="0,10,0,0"
+            FontSize="16"
+            FontAttributes="Bold"
+            Text="Description"/>
+        <Border
+            StrokeShape="RoundRectangle 10">
+            <Editor
+                Text="{Binding Description}"
+                HeightRequest="100"/>
+        </Border>
+
+        <Label
+            Margin="0,10,0,0"
+            FontSize="16"
+            FontAttributes="Bold"
+            Text="Completion Date"/>
+        <Border
+            StrokeShape="RoundRectangle 10">
+            <DatePicker
+                Date="{Binding CompletionTime}"/>
+        </Border>
+        <Grid
+            Margin="0,10,0,0"
+            ColumnSpacing="20"
+            ColumnDefinitions="*,*">
+            <VerticalStackLayout
+                Spacing="10"
+                Grid.Column="0">
+                <Label            
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    Text="Start Time"/>
+                <Border
+                    StrokeShape="RoundRectangle 10">
+                    <TimePicker
+                        Time="{Binding StartTime}"
+                        Format="hh:mm tt"/>
+                </Border>
+            </VerticalStackLayout>
+            
+            <VerticalStackLayout
+                Spacing="10"
+                Grid.Column="1">
+                <Label            
+                    FontSize="16"
+                    FontAttributes="Bold"
+                    Text="End Time"/>
+                <Border
+                    StrokeShape="RoundRectangle 10">
+                    <TimePicker                  
+                        Time="{Binding EndTime}"
+                        Format="hh:mm tt"/>
+                </Border>
+            </VerticalStackLayout>
+        </Grid>
+        <Button
+            Command="{Binding AddCommand}"
+            FontAttributes="Bold"
+            CornerRadius="15"
+            VerticalOptions="EndAndExpand"
+            BackgroundColor="DarkCyan"
+            Text="Create Task"/>
+    </StackLayout>
+    </ScrollView>
+</ContentPage>

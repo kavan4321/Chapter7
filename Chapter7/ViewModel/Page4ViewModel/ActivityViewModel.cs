@@ -26,8 +26,10 @@ namespace Chapter7.ViewModel.Page4ViewModel.ViewModelActivity
 
 
         public event EventHandler<ActivityResult> UpdateEvent;
+        public event EventHandler<bool> DeleteEvent;
         public ICommand UpdateCommand { get;private set; }
-     
+        public ICommand DeleteCommand { get;private set; }
+      
         public ActivityViewModel()
         {
             _activityDatabase= new ActivityDatabase();
@@ -35,18 +37,29 @@ namespace Chapter7.ViewModel.Page4ViewModel.ViewModelActivity
             _=_activityDatabase.CreateTableAsync();
             _ = GetListAsync();
             UpdateCommand = new Command<ActivityTable>((ActivityTable) => { _ = UpdateDetail(ActivityTable); } );
+            DeleteCommand = new Command<ActivityTable>((ActivityTable) => { _ = DeleteAsync(ActivityTable); });
         }
 
-        public async Task UpdateDetail(ActivityTable activityTable)
-        {
-            _activityDatabase.Id=activityTable.Id;
-            var result =await  _activityDatabase.GetUserData();
-            UpdateEvent?.Invoke(this,result);
-        }
+     
         public async Task GetListAsync()
         {
             await _activityDatabase.GetActivityListAsync();
            ActivityDatails = _activityDatabase.ActivityList.ToObservableCollection();
+        }
+
+        public async Task UpdateDetail(ActivityTable activityTable)
+        {
+            _activityDatabase.Id = activityTable.Id;
+            var result = await _activityDatabase.GetUserData();
+            UpdateEvent?.Invoke(this, result);
+        }
+
+        public async Task DeleteAsync(ActivityTable activityTable)
+        {
+            _activityDatabase.Id = activityTable.Id;
+            var result = await _activityDatabase.DeleteAsync();
+            DeleteEvent?.Invoke(this, result);
+            _ = GetListAsync();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

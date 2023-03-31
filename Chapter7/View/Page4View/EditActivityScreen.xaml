@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chapter7.View.Page4View.EditActivityScreen"
              xmlns:ViewModel="clr-namespace:Chapter7.ViewModel.Page4ViewModel.ViewModelUpdate"
-             Title="EditActivityScreen">
+             Title="Edit Activity">
     <ContentPage.BindingContext>
         <ViewModel:EditActivityViewModel></ViewModel:EditActivityViewModel>
     </ContentPage.BindingContext>
@@ -38,8 +38,8 @@
                             ></Switch>
                     </StackLayout>
                     <Button
-                        Command="{Binding UpdateCommand}"
-                            Text="Add"></Button>
+                            Command="{Binding UpdateCommand}"
+                            Text="Update"></Button>
                 </StackLayout>
             </Border>
         </StackLayout>

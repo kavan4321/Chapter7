@@ -77,6 +77,8 @@ namespace Chapter7.ViewModel.Page4ViewModel.ViewModelAddActivity
             var result =await _activityDatabase.InsertAsync();
             AddActivityEvent?.Invoke(this, result);
         }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

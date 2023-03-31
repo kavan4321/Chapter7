@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Chapter7.ViewModel.Page5ViewModel.ViewModelTask"
+             x:Class="Chapter7.View.Page5View.TaskManagerScreen"
+             Title="Tasks">
+
+    <ContentPage.BindingContext>
+        <ViewModel:TaskManagerViewModel></ViewModel:TaskManagerViewModel>
+    </ContentPage.BindingContext>
+
+
+    <RefreshView
+        Command="{Binding RefreshCommand}"
+        IsRefreshing="{Binding IsRefresh}">
+        <Grid>
+            <CollectionView
+            x:Name="TaskCollection"
+            IsVisible="{Binding IsShow}"
+            Margin="10,20"
+            ItemsSource="{Binding TaskList}"
+            EmptyView="No Task Available">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="10"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItemView
+                                CommandParameter="{Binding}"
+                                Command="{Binding Source={x:Reference TaskCollection},Path=BindingContext.EditCommand}">
+                                    <Border
+                                    BackgroundColor="Green"
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                    StrokeShape="RoundRectangle 50">
+                                        <Image
+                                        HeightRequest="20"
+                                        WidthRequest="20"
+                                        Source="editbutton"/>
+                                    </Border>
+                                </SwipeItemView>
+                            </SwipeView.LeftItems>
+                            <SwipeView.RightItems>
+                                <SwipeItemView
+                                CommandParameter="{Binding}"
+                                Command="{Binding Source={x:Reference TaskCollection},Path=BindingContext.DeleteCommand}">
+                                    <Border
+                                    BackgroundColor="Green"
+                                    HeightRequest="50"
+                                    WidthRequest="50"
+                                    StrokeShape="RoundRectangle 50">
+                                        <Image
+                                        HeightRequest="20"
+                                        WidthRequest="20"
+                                        Source="deletebutton"/>
+                                    </Border>
+                                </SwipeItemView>
+                            </SwipeView.RightItems>
+                            <Border
+                            StrokeShape="RoundRectangle 10">
+                                <Grid
+                            Padding="10"
+                            ColumnDefinitions="*,Auto">
+                                    <StackLayout
+                                Grid.Column="0">
+                                        <Label
+                                    FontSize="17"
+                                    FontAttributes="Bold"
+                                    Text="{Binding TaskName}"/>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                Text="Completion Date:"/>
+                                                    <Span
+                                                Text="{Binding CompletionDate,StringFormat='{0:dd/MM/yyyy}'}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                Text="Completion Time:"/>
+                                                    <Span
+                                                Text="{Binding StartTime,StringFormat='{0:hh:mm tt}'}"/>
+                                                    <Span
+                                                Text=" - "/>
+                                                    <Span
+                                                Text="{Binding EndTime,StringFormat='{0:hh:mm tt}'}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                    <ImageButton
+                                Grid.Column="1"
+                                Rotation="180"
+                                HeightRequest="20"
+                                WidthRequest="20"
+                                Source="arrow"/>
+                                </Grid>
+                            </Border>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <ActivityIndicator 
+            IsRunning="{Binding IsLoading}"
+            IsVisible="{Binding IsLoading}"
+            HeightRequest="50"
+            WidthRequest="50"
+            Color="Blue"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"/>
+            <ImageButton
+                x:Name="AddButton"
+                Clicked="AddButtonClicked"
+                Margin="0,0,20,20"
+                HeightRequest="50"
+                WidthRequest="50"
+                Source="addbutton"
+                HorizontalOptions="End"
+                VerticalOptions="End"></ImageButton>
+        </Grid>
+    </RefreshView>
+</ContentPage>

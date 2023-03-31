@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chapter7.View.Page4View.AddActivityScreen"
              xmlns:viewmodel="clr-namespace:Chapter7.ViewModel.Page4ViewModel.ViewModelAddActivity"
-             Title="AddActivityScreen">
+             Title="Add Activity">
 
     <ContentPage.BindingContext>
         <viewmodel:AddActivityViewModel></viewmodel:AddActivityViewModel>
