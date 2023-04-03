@@ -105,7 +105,7 @@ namespace Chapter7.ViewModel.Page5ViewModel.ViewModelNewTask
             _taskManagerDatabase.Description= Description;
             _taskManagerDatabase.CompletionDate= CompletionTime;
             _taskManagerDatabase.StartTime= StartTime;
-            _taskManagerDatabase.EndTime= EndTime;  
+            _taskManagerDatabase.EndTime= EndTime;
             var result= await _taskManagerDatabase.InsertAsync();
             AddTaskEvent?.Invoke(this,result);
         }

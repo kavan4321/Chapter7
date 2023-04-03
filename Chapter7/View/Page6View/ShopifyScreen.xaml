@@ -1,12 +1,87 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ViewModel="clr-namespace:Chapter7.ViewModel.Page6ViewModel.ViewModelShopify"
              x:Class="Chapter7.View.Page6View.ShopifyScreen"
-             Title="ShopifyScreen">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="Shopify">
+
+
+    <ContentPage.BindingContext>
+        <ViewModel:ShopifyViewModel></ViewModel:ShopifyViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <DataTemplate
+            x:Key="ShopifyDetail">
+            <Border
+                StrokeThickness="0">
+                <StackLayout
+                    Spacing="5">
+                    <Border
+                        StrokeThickness="0"
+                        StrokeShape="RoundRectangle 15">
+                        <Image
+                            Aspect="AspectFill"
+                            HeightRequest="200"                        
+                            Source="{Binding Thumbnail}"></Image>
+                    </Border>
+                    <Label
+                        Margin="5,0"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        Text="{Binding Brand,StringFormat='Brand: {0}'}"/>
+                    <Label
+                        Margin="5,0"
+                        FontSize="16"
+                        Text="{Binding Title}"/>
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <Label
+                            Margin="5,0"
+                            FontSize="15"
+                            TextColor="Gray"
+                            Text="{Binding Price, StringFormat='${0}'}"/>
+                        <Label
+                            Margin="5,0"
+                            TextColor="Red"
+                            FontSize="15"
+                            FontAttributes="Bold"
+                            HorizontalOptions="EndAndExpand"
+                            Text="{Binding Stock,StringFormat='Instock: {0}'}"/>
+                    </StackLayout>
+                    
+                </StackLayout>
+            </Border>
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <Grid
+        RowSpacing="5"
+        Padding="10,20"
+        RowDefinitions="Auto,Auto,*">
+        <Label
+            Grid.Row="0"
+            FontAttributes="Bold"
+            FontSize="17"
+            Text="Hello John"/>
+        <Label
+            Grid.Row="1"
+            FontSize="15"
+            TextColor="DarkCyan"
+            FontAttributes="Bold"
+            Text="What are you buying today?"/>
+        <CollectionView
+            Grid.Row="2"
+            Margin="0,10"
+            ItemsSource="{Binding ShopifyTable}"
+            ItemTemplate="{StaticResource  ShopifyDetail}">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    Span="2"
+                    VerticalItemSpacing="10"
+                    HorizontalItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+        </CollectionView>
+
+    </Grid>
 </ContentPage>
